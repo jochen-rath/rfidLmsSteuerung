@@ -14,7 +14,17 @@ Aus folgenden drei Komponenten besteht ein komplettes System
 2. Einen Clienten, der die Musik wiedergibt. ([Ich nutze squeezelite-esp32](https://github.com/sle118/squeezelite-esp32))
 3. Die hier vorgestellte RFID-Steuerung.
 
-##Installation
+##RFID Steuerung auf ESP32-Display
+###Firmware flashen
+```
+pip install esptool
+esptool.py --chip esp32s3 --port /dev/ttyACM0 erase_flash
+esptool.py --chip esp32s3 --port /dev/ttyACM0 write_flash -z 0 ep32-S3_display_firmware.bin
+```
+
+
+
+##Installation restlicher Komponenten
 ### LMS Server
 Zur Docker-Installation kopiere dir die Docker-Compose Datei auf deinen Server und starte diesen mit 
 ```
@@ -40,16 +50,16 @@ git clone -b v4.4.4 --recursive https://github.com/espressif/esp-idf.git esp-idf
 git clone --recursive https://github.com/sle118/squeezelite-esp32.git
 
 ```
-**Konfiguration**
+**ESP32-S3 Flashen**
 Passe mit dem Befehl "idf.py menuconfig" folgende Einstellungen an.
 
-![Bild 1](bilder/1_serialFlashConfig.png "Serial Flasher config")
-![Bild 2](bilder/2_squeezelite-esp32_AudioInput.png "Serial Flasher config")
-![Bild 3](bilder/3_componente-config_Bluetooth.png "")
-![Bild 4](bilder/4-0_componente-config_Esp32S3-Specific.png "")
-![Bild 5](bilder/4-1_componente-config_Esp32S3-Specific.png "")
-![Bild 6](bilder/4-2_componente-config_Esp32S3-Specific.png "")
-![Bild 7](bilder/5_componente-config_FreeRTOS.png "")
+![Bild 1](bilder/squeezeplayer_1_serialFlashConfig.png "Serial Flasher config")
+![Bild 2](bilder/squeezeplayer_2_squeezelite-esp32_AudioInput.png "Serial Flasher config")
+![Bild 3](bilder/squeezeplayer_3_componente-config_Bluetooth.png "")
+![Bild 4](bilder/squeezeplayer_4-0_componente-config_Esp32S3-Specific.png "")
+![Bild 5](bilder/squeezeplayer_4-1_componente-config_Esp32S3-Specific.png "")
+![Bild 6](bilder/squeezeplayer_4-2_componente-config_Esp32S3-Specific.png "")
+![Bild 7](bilder/squeezeplayer_5_componente-config_FreeRTOS.png "")
 
 Führe dann folgende Befehle aus:
 ```
@@ -59,7 +69,19 @@ idf.py flash
 
 **ESP32-S3 mit DAC verbinden**
 
+Verlöten folgende Punkte zwischen dem ESP und dem DAC
 
+| ESP32-S3    | DAC 1334|
+| -------- | ------- |
+| V3.3 | V3.3 |
+| GND | GND     |
+|  42 | WSEL    |
+|  41 | DIN |
+|  40 | BCLK
+
+**ESP32-S3 Einrichten**
+
+Verbinde dich mit dem ESP32-S3 mit dem Handy, WLAN squeezelite-esp32, Passwort squeezelite
 
 
 
