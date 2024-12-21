@@ -15,6 +15,15 @@ Aus folgenden drei Komponenten besteht ein komplettes System
 3. Die hier vorgestellte RFID-Steuerung.
 
 ##RFID Steuerung auf ESP32-Display
+
+##Komponenten
+
+* T-Display-S3 ESP32 S3 with 1.9 inch ST7789 LCD Display
+* MFRC-522 Mini RC522
+* Key Button Membrane Switch 3 ([Color: 5key-matrix-keyboard](https://www.aliexpress.com/item/1005004528531101.html))
+* USB Schalter
+* USB Powerbank
+
 ###Firmware flashen
 ```
 pip install esptool
@@ -22,9 +31,26 @@ esptool.py --chip esp32s3 --port /dev/ttyACM0 erase_flash
 esptool.py --chip esp32s3 --port /dev/ttyACM0 write_flash -z 0 ep32-S3_display_firmware.bin
 ```
 
+###LMS-Steuerung aufs Display laden
+Zur Übertragung des Skripts auf das ESP32 Display benutze ich Thonny. Wähle Run --> Select Interpreter --> Micropython (ESP32) und suche dann den richtigen Port. Speicher damit *squeezeplayerSteuerung.py* auf dem Display.
 
+###LMS-Steuerung anpassen
+Rufe das Skript *paramter.py* in Thonny auf und passe folgende Angaben an:
+
+* wlanname
+* wlanpasswort
+* squeezeclient
+* lmsserverip
+* rfidserverip
+
+Speicher dann *parameter.py* auf dem Display
+
+![Bild 1](bilder/thonny_3_WhereToSave.png")
+
+###Komponenten Verbinden
 
 ##Installation restlicher Komponenten
+
 ### LMS Server
 Zur Docker-Installation kopiere dir die Docker-Compose Datei auf deinen Server und starte diesen mit 
 ```
@@ -37,7 +63,9 @@ Für den Clienten braucht man folgende Teile:
 2. DAC Module 1334 UDA1334A I2S DAC (z.B. von Aliexpress)
 3. SONOFF Basic R2
 4. USB Netzteil
-5. USB Boxen
+5. USB Splitter, Eins auf Zwei
+6. USB Boxen
+7. 3.5mm Audio Aux Cable Anti-interference Ground Loop Noise Filter
 
 #### ESP32-S3 Installation
 **Softwareinstallation**
