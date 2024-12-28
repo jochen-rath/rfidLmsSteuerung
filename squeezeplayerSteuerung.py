@@ -15,6 +15,7 @@ import random
 import time
 import uasyncio as asyncio
 import vga2_bold_16x32 as big
+import vga1_bold_16x16 as medium
 import vga1_8x8 as small
 import tft_config
 import tft_buttons
@@ -167,7 +168,7 @@ class displayInhalt:
         res=self.requestsAbfrage(data=jdata,ort='getAktuelleLieder')
         if res==-1:
             return
-        self.lied=ujson.loads(res.text)['result']['_title'][0:20]
+        self.lied=ujson.loads(res.text)['result']['_title']  #[0:20]
         if self.aktIndex>0:
             try:
                 res=urequests.post(self.url, data = ujson.dumps({"id":1,"method":"slim.request","params":[self.players[self.player],["playlist","title",f"{self.aktIndex-1}","?"]]}))
@@ -252,7 +253,12 @@ class displayInhalt:
         if self.player:
             tft.text(big,self.player if self.player else 'Keiner' ,tft.width()-(len(self.player) if self.player else len('Keiner')) * big.WIDTH,0,GREEN)
         tft.text(small,self.vorher,0,tft.height() // 2 - big.HEIGHT // 2-small.HEIGHT,GREEN)
-        tft.text(big,self.mitte,0,tft.height() // 2 - big.HEIGHT // 2,BLUE)
+        n=len(self.mitte)
+        if n>25:        
+            tft.text(medium,self.mitte[0:20],0,tft.height() // 2 - medium.HEIGHT // 2,BLUE)       
+            tft.text(medium,self.mitte[20:min(40,n)],0,tft.height() // 2 + medium.HEIGHT // 2,BLUE)
+        else:        
+            tft.text(big,self.mitte[0:min(20,n)],0,tft.height() // 2 - big.HEIGHT // 2,BLUE)
         tft.text(small,self.naechste,0,tft.height() // 2 + big.HEIGHT // 2 + small.HEIGHT,GREEN)
         tft.text(big,self.status,0,tft.height()- 2* small.HEIGHT - big.HEIGHT,GREEN)
         tft.text(small,self.unten,0,tft.height() - small.HEIGHT,RED)

@@ -1,0 +1,12 @@
+[Unit]
+Description=RFID Karten Zuordnung
+After=multi-user.target 
+
+[Service]
+Type=idle
+WorkingDirectory=/home/pi/rfidLMS
+ExecStart=/usr/bin/python3 /home/pi/rfidLMS/httpServerGetPost.py
+User = pi
+[Install]
+WantedBy=multi-user.target
+
