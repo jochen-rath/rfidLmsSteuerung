@@ -79,13 +79,13 @@ Ich habe den Taster direkt an das ESP32 gelötet, um Platz zu sparen. Nicht gest
 Die RFID Karten werden mit Hilfe eines Python Skripts verschiednenen Musikordnern, -dateien, -streams, Hörbüchern oder An- Ausschaltern zugeordnet.
 
 1. Kopiere das Skript *httpServerGetPost.py* und die Datei *rfidKarten.csv* auf einen Server in den Ordner */home/pi/rfidLMS*
-2. Kopiere als admin die Datei *rfidLMS.service* nach */lib/systemd/system*
+2. Kopiere als admin die Datei *rfidLMS.service* nach */lib/systemd/system*:  *sudo cp  rfidLMS.service /lib/systemd/system/*
 3. Aktiviere das Skript als Service mit folgenden Befehlen:
 
 ```
 sudo systemctl enable rfidLMS
 sudo systemctl daemon-reload
-sudo systemctl start abgen
+sudo systemctl start rfidLMS
 ```
 Möchtest du andere Pfade verwenden, passe die Ordner in den Skripten an. Ich habe die Datei *rfidKarten.csv* in einem Pfad gespeichert, auf dem ich per Samba mit meinem Handy zugriff habe, so kann ich einfach neue Karten in diese Datei einpflegen, indem ich mit dem NCF Reader meines Handy die Karten-ID auslese und diese einer Aktion zuordne.
 
