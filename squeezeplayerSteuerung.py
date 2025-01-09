@@ -14,8 +14,8 @@ import utime
 import random
 import time
 import uasyncio as asyncio
-#import vga2_bold_16x32 as big
-import romans as big
+import vga2_bold_16x32 as big
+#import romans as big
 import vga2_bold_16x16 as medium
 #import italiccs as medium
 import vga2_8x8 as small
@@ -98,7 +98,7 @@ class displayInhalt:
     aktuellesMenu=None
     aktIndex=0
     anzLieder=0
-    sonoff=parameter.werte('sonoff')
+    sonoff=f'{parameter.werte("player")}{parameter.werte("sonoff")}'
     playercount=0
     untenRechts="RFID Frei"
     obenLinks=""
@@ -284,14 +284,15 @@ class displayInhalt:
         tft.show()
     def frageSonoffAb(self,):
         self.obenLinks=''
-        url=f'http{self.sonoff.split("http")[1]}'
+        url=f'http{self.sonoff.split("http")[1]}/cm?cmnd=status'
         name=self.sonoff.split("http")[0]
-        res=requestsAbfrage(self,data=[],ort='Sonoff',url=url)
-        if res==-1:
+        try:
+            res=urequests.post(url)
+        except:
             self.sonoff=''
             return False
-        anAus=res['Status']['Power']
-        self.obenLinks=f'{name}: {"Aus" if anAus==0 else "An"}'
+        anAus=ujson.loads(res.text)['Status']['Power']
+        self.obenLinks=f'{name}: {"Aus" if anAus=="0" else "An"}'
         return True
     def playUrl(self,url):
         playjson=ujson.dumps({"id":1,"method":"slim.request","params":[self.players[self.player],["playlist","play",url]]})

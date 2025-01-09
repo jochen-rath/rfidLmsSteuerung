@@ -154,7 +154,7 @@ esptool.py -p /dev/ttyACM0  -b 460800 --before default_reset --after hard_reset 
 
 **ESP32-S3 mit DAC verbinden**
 
-Verlöten folgende Punkte zwischen dem ESP und dem DAC
+Verlöte folgende Punkte zwischen dem ESP und dem DAC
 
 | ESP32-S3    | DAC 1334|
 | -------- | ------- |
