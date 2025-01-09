@@ -43,7 +43,9 @@ class _RequestHandler(BaseHTTPRequestHandler):
                 if karten[message["LMS"]][0].startswith('Sonoff'):
                     url=f'http{karten[message["LMS"]][0].split("http")[1]}'
                     res=requests.get(url)
-                    self.wfile.write(json.dumps({message['LMS']: 'Keine Musik'}).encode('utf-8'))
+#                    self.wfile.write(json.dumps({message['LMS']: 'Keine Musik'}).encode('utf-8'))
+#Gib nur SonOffNamehttp://Ip zurück
+                    self.wfile.write(json.dumps({message['LMS']: karten[message["LMS"]][0].split('cm?')[0]}).encode('utf-8'))
                 else:
                     self.wfile.write(json.dumps({message['LMS']: karten[message["LMS"]]}).encode('utf-8'))
             else:

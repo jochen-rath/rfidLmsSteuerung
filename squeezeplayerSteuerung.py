@@ -14,9 +14,12 @@ import utime
 import random
 import time
 import uasyncio as asyncio
-import vga2_bold_16x32 as big
-import vga1_bold_16x16 as medium
-import vga1_8x8 as small
+#import vga2_bold_16x32 as big
+import romans as big
+import vga2_bold_16x16 as medium
+#import italiccs as medium
+import vga2_8x8 as small
+#import romanp as small
 import tft_config
 import tft_buttons
 import s3lcd
@@ -95,8 +98,10 @@ class displayInhalt:
     aktuellesMenu=None
     aktIndex=0
     anzLieder=0
+    sonoff=parameter.werte('sonoff')
     playercount=0
     untenRechts="RFID Frei"
+    obenLinks=""
     def __init__(self, player=parameter.werte('player'),url=parameter.werte('server')):
         self.url=url
         self.player=player
@@ -250,6 +255,9 @@ class displayInhalt:
                     self.ebeneNull()     
     def updateDisplay(self,):
         tft.fill(BACKGROUND)
+        if len(self.sonoff)>0:
+            if self.frageSonoffAb():
+                tft.text(small,self.obenLinks,0,0,GREEN)
         if self.player:
             tft.text(big,self.player if self.player else 'Keiner' ,tft.width()-(len(self.player) if self.player else len('Keiner')) * big.WIDTH,0,GREEN)
         tft.text(small,self.vorher,0,tft.height() // 2 - big.HEIGHT // 2-small.HEIGHT,GREEN)
@@ -274,6 +282,17 @@ class displayInhalt:
         tft.rect(10, tft.height() // 2 , tft.width()-20, 20, GREEN)
         tft.fill_rect(10, tft.height() // 2 ,int(maxRechteck* self.volumen/100), 20, GREEN)
         tft.show()
+    def frageSonoffAb(self,):
+        self.obenLinks=''
+        url=f'http{self.sonoff.split("http")[1]}'
+        name=self.sonoff.split("http")[0]
+        res=requestsAbfrage(self,data=[],ort='Sonoff',url=url)
+        if res==-1:
+            self.sonoff=''
+            return False
+        anAus=res['Status']['Power']
+        self.obenLinks=f'{name}: {"Aus" if anAus==0 else "An"}'
+        return True
     def playUrl(self,url):
         playjson=ujson.dumps({"id":1,"method":"slim.request","params":[self.players[self.player],["playlist","play",url]]})
         res=self.requestsAbfrage(data=playjson,ort='playUrl')
@@ -283,10 +302,12 @@ class displayInhalt:
     def setzeZufall(self,zufall=1):
         playjson=ujson.dumps({"id":1,"method":"slim.request","params":[self.players[self.player],["playlist", "shuffle", zufall]]})
         res=self.requestsAbfrage(data=playjson,ort='setzeZufall')
-    def requestsAbfrage(self,data=[],ort='Unbekannt'):
+    def requestsAbfrage(self,data=[],ort='Unbekannt',url=''):
         res=-1
         try:
-            res=urequests.post(self.url, data = data)
+            if len(url)==0:
+                url=self.url
+            res=urequests.post(url, data = data)
         except:
             print('urequests Fehler in '+str(ort))
         return res
@@ -319,8 +340,10 @@ def rfid_read():
                     display.updateDisplay()
                     return False
             print(rueckgabe)
-            if  not (uresFehler or ('Not Found' in rueckgabe) or ('Keine Musik' in rueckgabe)):
+            if  not (uresFehler or ('Not Found' in rueckgabe) or ('Keine Musik' in rueckgabe) or ('Sonoff' in rueckgabe)):
                 display.playVari(["playlist","play",rueckgabe])
+            if 'Sonoff' in rueckgabe:
+                display.sonoff=rueckgabe.split('Sonoff')[1]
             display.untenRechts="RFID Gesperrt"
             display.updateDisplay()
             return False

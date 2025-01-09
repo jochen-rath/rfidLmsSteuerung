@@ -2,12 +2,17 @@
 
 
 ## Inhalt
+* [Vorbemerkung](#vorbemerkung)
+* [Aufbau](#aufbau)
+* [RFID Steuerung auf ESP32-Display](#RFID Steuerung auf ESP32-Display)
 
+<a name="vorbemerkung"/>
 ## Vorbemerkung
-Logitech hat vor lange Zeit einen kostenlosen Mediaserver bereit gestellt, mit dem man kostenlos seine Musik im ganzen Haus verteilen kann. Den Logitech Media Server oder kurz LMS. Man braucht einen Rechner, der als Server arbeit und die Musik an verschiedene Clienten schickt. Dies können Rechner, Raspberry Pis, Handy oder seit kurzen ESP32 sein. Gerade die ESP32 sind eine sehr günstige alternative, die Musik zu empfangen.
+Logitech hat vor lange Zeit einen kostenlosen Mediaserver bereit gestellt, mit dem man kostenlos seine Musik im ganzen Haus verteilen kann. Den Logitech Media Server oder kurz LMS. Man braucht einen Rechner, der als Server arbeit und die Musik an verschiedene Clienten schickt. Diese können Rechner, Raspberry Pis, Handys oder seit kurzen ESP32 sein. Gerade die ESP32 sind eine sehr günstige alternative, die Musik zu empfangen.
 
 Den LMS kann man gut mit Handy und Browser fernsteuern. Doch habe ich nicht immer mein Handy dabei und möchte auch gerne, dass meine Kinder selbständig Lieder und Hörbücher starten können. Für letzteres gibt es auch gute eigenständige Systeme, wie z.B. der TonUINO, aber gerade für ältere Kinder ist dies irgendwann nicht mehr zeitgemäß. Da ich selber schon länger den Logitech Media Server (LMS) nutze und meinen Kinder den irgendwann auch in deren Zimmer einbauen wollte, entschied ich mich, mir eine RFID - Steuerung für diesen einzurichten.
 
+<a name="aufbau"/>
 ##Aufbau
 Aus folgenden drei Komponenten besteht ein komplettes System
 
@@ -17,15 +22,17 @@ Aus folgenden drei Komponenten besteht ein komplettes System
 3. Die hier vorgestellte RFID-Steuerung.
 4. Ein Pythonskript, welches den IDs der RFID-Karten einer Aktion zuordnen.
 
-##RFID Steuerung auf ESP32-Display
 
-##Komponenten
+<a name="RFID Steuerung auf ESP32-Display"/>
+##RFID Steuerung auf ESP32-Display
+###Komponenten
 
 * T-Display-S3 ESP32 S3 with 1.9 inch ST7789 LCD Display
 * MFRC-522 Mini RC522
 * Key Button Membrane Switch 3 ([Color: 5key-matrix-keyboard](https://www.aliexpress.com/item/1005004528531101.html))
 * USB Schalter
 * USB Powerbank
+* Gehäuse aus dem 3D-Druck
 
 ###Firmware flashen
 ```
@@ -35,7 +42,7 @@ esptool.py --chip esp32s3 --port /dev/ttyACM0 write_flash -z 0 esp32-S3_display_
 ```
 
 ###LMS-Steuerung aufs Display laden
-Zur Übertragung des Skripts auf das ESP32 Display benutze ich Thonny. Wähle Run --> Select Interpreter --> Micropython (ESP32) und suche dann den richtigen Port. Speicher damit *squeezeplayerSteuerung.py* auf dem Display.
+Zur Übertragung des Skripts auf das ESP32 Display benutze ich Thonny. Wähle Run --> Select Interpreter --> Micropython (ESP32) und suche dann den richtigen Port. Speicher damit *squeezeplayerSteuerung.py* als *main.py* auf dem Display.
 
 ###LMS-Steuerung anpassen
 Rufe das Skript *paramter.py* in Thonny auf und passe folgende Angaben an:
@@ -97,7 +104,13 @@ Zur Docker-Installation kopiere dir die Docker-Compose Datei auf deinen Server u
 docker-compose up -d
 ```
 ###squeezelite-esp32
-Für den Clienten braucht man folgende Teile:
+####Offiziele Clienten
+Es gibt verschiedene Projekte, die direkt das Squeezelite-ESP32 unterstützen. Diese finden sich hier:
+
+[Firmware for ESP Audio Dock](https://sonocotta.github.io/esp32-audio-dock/)
+
+####ESP32-S3
+Aus Kostengründen nutze ich aber den ESP32-S3, welcher keine offiziele Unterstützung besitzt. Für den ESP32-S3 Clienten braucht man folgende Teile:
 
 1. ESP32-S3 Development Board (z.B. von Aliexpress, auf 16MB achten: N16R8 - 8M psram, 16M flash)
 2. DAC Module 1334 UDA1334A I2S DAC (z.B. von Aliexpress)
@@ -118,6 +131,7 @@ esptool.py -p /dev/ttyACM0  -b 460800 --before default_reset --after hard_reset 
 
 ```
 Nutze die Datei *esp32-S3_08MB_squeezelite.bin*, wenn du dir ein 8 MB esp32-S3 gekauft hast.
+
 **ESP32-S3 mit DAC verbinden**
 
 Verlöten folgende Punkte zwischen dem ESP und dem DAC
@@ -135,12 +149,28 @@ Verlöten folgende Punkte zwischen dem ESP und dem DAC
 Verbinde dich mit dem ESP32-S3 mit dem Handy, WLAN squeezelite-esp32, Passwort squeezelite
 
 **Autoconnect**
-Die hier genuzte Version des esp32-squeezelite Players kann sich nicht selber mit dem Server verbinden. Hier wird beschrieben, welcher schritt nochfehlt:
-https://github.com/sle118/squeezelite-esp32/issues/411#issuecomment-2104861151
+Die hier genuzte Version des esp32-squeezelite Players kann sich nicht selber mit dem Server verbinden. [Hier wird beschrieben, welcher Schritt nochfehlt](https://github.com/sle118/squeezelite-esp32/issues/411#issuecomment-2104861151)
+
+###Sonoff Basic einrichten
+Zum An und Auschalten der ESP32-S3 Clienten nutze ich den Sonoff Basic, welcher [mit einer Tasmota Firmaware geflasht wurde.](https://tasmota.github.io/docs/devices/Sonoff-Basic/)
+
+**Sonoff Flashen**
+
+Ablauf:
+
+1. [Lade dir die Firmware herunter](https://ota.tasmota.com/tasmota/release/tasmota.bin)
+2. Öffne das Gehäuse
+3. Löte 5 Pins an die richtige Stelle.
+4. Verbinde die 5 Pins mit einem FT232RL USB-Serial Adapter, halte dabei den Reset-Knopf gedrückt.
+5. Lösche den Speicher und flashe die Tasmota mit folgenden Befehlen:
 
 
-
-**ESP32-S3 Firmware selber erstellen**
+```
+esptool.py --port /dev/ttyUSB0 erase_flash
+esptool.py --port /dev/ttyUSB0 write_flash -fs 1MB -fm dout 0x0 tasmota-DE.bin
+```
+[Hier ist eine ausführliche Anleitung mit Bildern.](https://medium.com/@jordanrounds/sonoff-basic-r2-tasmota-aa6f9d4e033f)
+##ESP32-S3 Firmware selber erstellen
 
 Sollte dein ESP32 nicht zu den hier vorgestellten Konfigurationen passen, erstelle deine eigene mit folgenden Befehlen:
 
