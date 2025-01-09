@@ -113,10 +113,11 @@ Möchtest du andere Pfade verwenden, passe die Ordner in den Skripten an. Ich ha
 
 ### LMS Server
 
-Zur Docker-Installation kopiere dir die Docker-Compose Datei auf deinen Server und starte diesen mit 
+Zur Docker-Installation [kopiere dir die Docker-Compose Datei](https://hub.docker.com/r/lmscommunity/lyrionmusicserver) auf deinen Server und starte den LMS Server mit 
 ```
 docker-compose up -d
 ```
+Richte den Server den eigenen Anforderungen entsprechend ein.
 
 ### squeezelite-esp32
 
@@ -132,11 +133,11 @@ Aus Kostengründen nutze ich aber den ESP32-S3, welcher keine offiziele Unterst�
 
 1. ESP32-S3 Development Board (z.B. von Aliexpress, auf 16MB achten: N16R8 - 8M psram, 16M flash)
 2. DAC Module 1334 UDA1334A I2S DAC (z.B. von Aliexpress)
-3. SONOFF Basic R2
+3. SONOFF Basic R2 (Zum An-Aus Schalten mitteils RFID-Karten)
 4. USB Netzteil
-5. USB Splitter, Eins auf Zwei
+5. USB Splitter, Eins auf Zwei (Nur ein Netzteil für Boxen und Esp32)
 6. USB Boxen
-7. 3.5mm Audio Aux Cable Anti-interference Ground Loop Noise Filter
+7. 3.5mm Audio Aux Cable Anti-interference Ground Loop Noise Filter (Falls der Sound störgeräusche enthält. Dies kann bei mir vorkommen, wenn Boxen und ESP32-S3 am gleichen Netzteil hängen.)
 
 #### ESP32-S3 Installation
 
