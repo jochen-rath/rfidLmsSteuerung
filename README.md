@@ -174,7 +174,7 @@ Die hier genuzte Version des esp32-squeezelite Players kann sich nicht selber mi
 
 ### Sonoff Basic einrichten
 
-Zum An und Auschalten der ESP32-S3 Clienten nutze ich den Sonoff Basic, welcher [mit einer Tasmota Firmaware geflasht wurde.](https://tasmota.github.io/docs/devices/Sonoff-Basic/)
+Zum An und Auschalten der ESP32-S3 Clienten nutze ich den Sonoff Basic R2, welcher [mit einer Tasmota Firmaware geflasht wurde.](https://tasmota.github.io/docs/devices/Sonoff-Basic/)
 
 **Sonoff Flashen**
 
@@ -197,7 +197,7 @@ esptool.py --port /dev/ttyUSB0 write_flash -fs 1MB -fm dout 0x0 tasmota-DE.bin
 
 ## ESP32-S3 Firmware selber erstellen
 
-Sollte dein ESP32 nicht zu den hier vorgestellten Konfigurationen passen, erstelle deine eigene mit folgenden Befehlen:
+Sollte dein ESP32-S3 nicht zu den hier vorgestellten Konfigurationen passen, erstelle deine eigene Firmware mit folgenden Befehlen:
 
 ```
 mkdir ~/esp
@@ -215,7 +215,7 @@ cp build-scripts/I2S-4MFlash-sdkconfig.defaults sdkconfig.defaults
 
 **ESP32-S3 Konfigurieren**
 
-Passe mit dem Befehl "idf.py menuconfig" folgende Einstellungen an.
+Passe mit dem Befehl "idf.py menuconfig" folgende Einstellungen an. Da der ESP32-S3 kein Bluetooth hat, muss dies deaktiviert werden.
 
 ![Bild 1](bilder/squeezeplayer_1_serialFlashConfig.png "Serial Flasher config")
 ![Bild 2](bilder/squeezeplayer_2_squeezelite-esp32_AudioInput.png "Serial Flasher config")
