@@ -180,7 +180,7 @@ Zum An und Auschalten der ESP32-S3 Clienten nutze ich den Sonoff Basic R2, welch
 
 Ablauf:
 
-1. [Lade dir die Firmware herunter](https://ota.tasmota.com/tasmota/release/tasmota.bin)
+1. [Lade dir die Firmware herunter](https://ota.tasmota.com/tasmota/release/tasmota-DE.bin)
 2. Öffne das Gehäuse
 3. Löte 5 Pins an die richtige Stelle.
 4. Verbinde die 5 Pins mit einem FT232RL USB-Serial Adapter, halte dabei den Reset-Knopf gedrückt.
