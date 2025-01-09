@@ -150,7 +150,7 @@ esptool.py --chip esp32s3 --port /dev/ttyACM0 erase_flash
 esptool.py -p /dev/ttyACM0  -b 460800 --before default_reset --after hard_reset --chip esp32s3  write_flash --flash_mode dio --flash_size detect --flash_freq 80m 0x0 esp32s3_16MB_squeeze_bootloader.bin 0x8000 esp32s3_16MB_squeeze_partition-table.bin 0xd000 esp32s3_16MB_squeeze_ota_data_initial.bin 0x10000 esp32s3_16MB_squeeze_recovery.bin 0x150000 esp32s3_16MB_squeeze_squeezelite.bin
 
 ```
-Nutze die Datei *esp32-S3_08MB_squeezelite.bin*, wenn du dir ein 8 MB esp32-S3 gekauft hast.
+
 
 **ESP32-S3 mit DAC verbinden**
 
