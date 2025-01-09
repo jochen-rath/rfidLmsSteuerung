@@ -1,7 +1,7 @@
 # Den Logitech Media Server mit RFID Karten steuern
 
 
-## Inhalt
+##Inhalt
 * [Vorbemerkung](#vorbemerkung)
 * [Aufbau](#aufbau)
 * [RFID Steuerung auf ESP32-Display](#rfidsteuerung)
@@ -11,7 +11,7 @@
 
 
 <a name="vorbemerkung"/>
-## Vorbemerkung
+##Vorbemerkung
 
 Logitech hat vor lange Zeit einen kostenlosen Mediaserver bereit gestellt, mit dem man kostenlos seine Musik im ganzen Haus verteilen kann. Den Logitech Media Server oder kurz LMS. Man braucht einen Rechner, der als Server arbeit und die Musik an verschiedene Clienten schickt. Diese können Rechner, Raspberry Pis, Handys oder seit kurzen ESP32 sein. Gerade die ESP32 sind eine sehr günstige alternative, die Musik zu empfangen.
 
