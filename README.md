@@ -1,6 +1,7 @@
 # Den Logitech Media Server mit RFID Karten steuern
 
 ## Inhalt
+
 * [Vorbemerkung](#vorbemerkung)
 * [Aufbau](#aufbau)
 * [RFID Steuerung auf ESP32-Display](#rfidsteuerung)
@@ -111,17 +112,22 @@ Möchtest du andere Pfade verwenden, passe die Ordner in den Skripten an. Ich ha
 ## Installation restlicher Komponenten
 
 ### LMS Server
+
 Zur Docker-Installation kopiere dir die Docker-Compose Datei auf deinen Server und starte diesen mit 
 ```
 docker-compose up -d
 ```
+
 ### squeezelite-esp32
+
 #### Offiziele Clienten
+
 Es gibt verschiedene Projekte, die direkt das Squeezelite-ESP32 unterstützen. Diese finden sich hier:
 
 [Firmware for ESP Audio Dock](https://sonocotta.github.io/esp32-audio-dock/)
 
 #### ESP32-S3
+
 Aus Kostengründen nutze ich aber den ESP32-S3, welcher keine offiziele Unterstützung besitzt. Für den ESP32-S3 Clienten braucht man folgende Teile:
 
 1. ESP32-S3 Development Board (z.B. von Aliexpress, auf 16MB achten: N16R8 - 8M psram, 16M flash)
@@ -135,6 +141,7 @@ Aus Kostengründen nutze ich aber den ESP32-S3, welcher keine offiziele Unterst�
 #### ESP32-S3 Installation
 
 **Softwareinstallation**
+
 Für die 16 MB esp32-s3
 ```
 pip install esptool
@@ -161,9 +168,11 @@ Verlöten folgende Punkte zwischen dem ESP und dem DAC
 Verbinde dich mit dem ESP32-S3 mit dem Handy, WLAN squeezelite-esp32, Passwort squeezelite
 
 **Autoconnect**
+
 Die hier genuzte Version des esp32-squeezelite Players kann sich nicht selber mit dem Server verbinden. [Hier wird beschrieben, welcher Schritt nochfehlt](https://github.com/sle118/squeezelite-esp32/issues/411#issuecomment-2104861151)
 
 ### Sonoff Basic einrichten
+
 Zum An und Auschalten der ESP32-S3 Clienten nutze ich den Sonoff Basic, welcher [mit einer Tasmota Firmaware geflasht wurde.](https://tasmota.github.io/docs/devices/Sonoff-Basic/)
 
 **Sonoff Flashen**
@@ -204,6 +213,7 @@ cp build-scripts/I2S-4MFlash-sdkconfig.defaults sdkconfig.defaults
 Änder nun in der Datei sdkconfig.defaults die *CONFIG_IDF_TARGET="esp32"* zu *CONFIG_IDF_TARGET="esp32s3"*
 
 **ESP32-S3 Konfigurieren**
+
 Passe mit dem Befehl "idf.py menuconfig" folgende Einstellungen an.
 
 ![Bild 1](bilder/squeezeplayer_1_serialFlashConfig.png "Serial Flasher config")
