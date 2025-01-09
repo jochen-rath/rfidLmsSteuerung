@@ -90,6 +90,7 @@ Speicher dann *parameter.py* auf dem Display
 Ich habe den Taster direkt an das ESP32 gelötet, um Platz zu sparen. Nicht gesteckt.
 
 <a name="rfidkartenzuordnen"/>
+
 ## RFID Karten Zuordnen
 
 Die RFID Karten werden mit Hilfe eines Python Skripts verschiednenen Musikordnern, -dateien, -streams, Hörbüchern oder An- Ausschaltern zugeordnet.
