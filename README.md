@@ -9,14 +9,17 @@
 * [Installation restlicher Komponenten](#Installation restlicher Komponenten)
 * [ESP32-S3 Firmware selber erstellen](#ESP32-S3 Firmware selber erstellen)
 
+
 <a name="vorbemerkung"/>
 ## Vorbemerkung
+
 Logitech hat vor lange Zeit einen kostenlosen Mediaserver bereit gestellt, mit dem man kostenlos seine Musik im ganzen Haus verteilen kann. Den Logitech Media Server oder kurz LMS. Man braucht einen Rechner, der als Server arbeit und die Musik an verschiedene Clienten schickt. Diese können Rechner, Raspberry Pis, Handys oder seit kurzen ESP32 sein. Gerade die ESP32 sind eine sehr günstige alternative, die Musik zu empfangen.
 
 Den LMS kann man gut mit Handy und Browser fernsteuern. Doch habe ich nicht immer mein Handy dabei und möchte auch gerne, dass meine Kinder selbständig Lieder und Hörbücher starten können. Für letzteres gibt es auch gute eigenständige Systeme, wie z.B. der TonUINO, aber gerade für ältere Kinder ist dies irgendwann nicht mehr zeitgemäß. Da ich selber schon länger den Logitech Media Server (LMS) nutze und meinen Kinder den irgendwann auch in deren Zimmer einbauen wollte, entschied ich mich, mir eine RFID - Steuerung für diesen einzurichten.
 
 <a name="aufbau"/>
 ##Aufbau
+
 Aus folgenden drei Komponenten besteht ein komplettes System
 
 
