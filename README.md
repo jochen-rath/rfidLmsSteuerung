@@ -9,6 +9,7 @@
 * [ESP32-S3 Firmware selber erstellen](#esp32s3firmwareerstellen)
 
 <a name="vorbemerkung"/>
+
 ## Vorbemerkung
 
 Logitech hat vor lange Zeit einen kostenlosen Mediaserver bereit gestellt, mit dem man kostenlos seine Musik im ganzen Haus verteilen kann. Den Logitech Media Server oder kurz LMS. Man braucht einen Rechner, der als Server arbeit und die Musik an verschiedene Clienten schickt. Diese können Rechner, Raspberry Pis, Handys oder seit kurzen ESP32 sein. Gerade die ESP32 sind eine sehr günstige alternative, die Musik zu empfangen.
@@ -16,6 +17,7 @@ Logitech hat vor lange Zeit einen kostenlosen Mediaserver bereit gestellt, mit d
 Den LMS kann man gut mit Handy und Browser fernsteuern. Doch habe ich nicht immer mein Handy dabei und möchte auch gerne, dass meine Kinder selbständig Lieder und Hörbücher starten können. Für letzteres gibt es auch gute eigenständige Systeme, wie z.B. der TonUINO, aber gerade für ältere Kinder ist dies irgendwann nicht mehr zeitgemäß. Da ich selber schon länger den Logitech Media Server (LMS) nutze und meinen Kinder den irgendwann auch in deren Zimmer einbauen wollte, entschied ich mich, mir eine RFID - Steuerung für diesen einzurichten.
 
 <a name="aufbau"/>
+
 ## Aufbau
 
 Aus folgenden drei Komponenten besteht ein komplettes System
@@ -28,9 +30,10 @@ Aus folgenden drei Komponenten besteht ein komplettes System
 
 
 <a name="rfidsteuerung"/>
-## RFID Steuerung auf ESP32-Display
-### Komponenten
 
+## RFID Steuerung auf ESP32-Display
+
+### Komponenten
 * T-Display-S3 ESP32 S3 with 1.9 inch ST7789 LCD Display
 * MFRC-522 Mini RC522
 * Key Button Membrane Switch 3 ([Color: 5key-matrix-keyboard](https://www.aliexpress.com/item/1005004528531101.html))
@@ -87,6 +90,7 @@ Speicher dann *parameter.py* auf dem Display
 Ich habe den Taster direkt an das ESP32 gelötet, um Platz zu sparen. Nicht gesteckt.
 
 <a name="rfidkartenzuordnen"/>
+
 ## RFID Karten Zuordnen
 Die RFID Karten werden mit Hilfe eines Python Skripts verschiednenen Musikordnern, -dateien, -streams, Hörbüchern oder An- Ausschaltern zugeordnet.
 
@@ -102,6 +106,7 @@ sudo systemctl start rfidLMS
 Möchtest du andere Pfade verwenden, passe die Ordner in den Skripten an. Ich habe die Datei *rfidKarten.csv* in einem Pfad gespeichert, auf dem ich per Samba mit meinem Handy zugriff habe, so kann ich einfach neue Karten in diese Datei einpflegen, indem ich mit dem NCF Reader meines Handy die Karten-ID auslese und diese einer Aktion zuordne.
 
 <a name="installationkomponenten"/>
+
 ## Installation restlicher Komponenten
 
 ### LMS Server
@@ -178,6 +183,7 @@ esptool.py --port /dev/ttyUSB0 write_flash -fs 1MB -fm dout 0x0 tasmota-DE.bin
 [Hier ist eine ausführliche Anleitung mit Bildern.](https://medium.com/@jordanrounds/sonoff-basic-r2-tasmota-aa6f9d4e033f)
 
 <a name="esp32s3firmwareerstellen"/>
+
 ## ESP32-S3 Firmware selber erstellen
 
 Sollte dein ESP32 nicht zu den hier vorgestellten Konfigurationen passen, erstelle deine eigene mit folgenden Befehlen:
