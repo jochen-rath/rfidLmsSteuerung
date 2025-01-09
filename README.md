@@ -1,7 +1,6 @@
 # Den Logitech Media Server mit RFID Karten steuern
 
-
-##Inhalt
+## Inhalt
 * [Vorbemerkung](#vorbemerkung)
 * [Aufbau](#aufbau)
 * [RFID Steuerung auf ESP32-Display](#rfidsteuerung)
@@ -9,16 +8,15 @@
 * [Installation restlicher Komponenten](#installationkomponenten)
 * [ESP32-S3 Firmware selber erstellen](#esp32s3firmwareerstellen)
 
-
 <a name="vorbemerkung"/>
-##Vorbemerkung
+## Vorbemerkung
 
 Logitech hat vor lange Zeit einen kostenlosen Mediaserver bereit gestellt, mit dem man kostenlos seine Musik im ganzen Haus verteilen kann. Den Logitech Media Server oder kurz LMS. Man braucht einen Rechner, der als Server arbeit und die Musik an verschiedene Clienten schickt. Diese können Rechner, Raspberry Pis, Handys oder seit kurzen ESP32 sein. Gerade die ESP32 sind eine sehr günstige alternative, die Musik zu empfangen.
 
 Den LMS kann man gut mit Handy und Browser fernsteuern. Doch habe ich nicht immer mein Handy dabei und möchte auch gerne, dass meine Kinder selbständig Lieder und Hörbücher starten können. Für letzteres gibt es auch gute eigenständige Systeme, wie z.B. der TonUINO, aber gerade für ältere Kinder ist dies irgendwann nicht mehr zeitgemäß. Da ich selber schon länger den Logitech Media Server (LMS) nutze und meinen Kinder den irgendwann auch in deren Zimmer einbauen wollte, entschied ich mich, mir eine RFID - Steuerung für diesen einzurichten.
 
 <a name="aufbau"/>
-##Aufbau
+## Aufbau
 
 Aus folgenden drei Komponenten besteht ein komplettes System
 
@@ -30,8 +28,8 @@ Aus folgenden drei Komponenten besteht ein komplettes System
 
 
 <a name="rfidsteuerung"/>
-##RFID Steuerung auf ESP32-Display
-###Komponenten
+## RFID Steuerung auf ESP32-Display
+### Komponenten
 
 * T-Display-S3 ESP32 S3 with 1.9 inch ST7789 LCD Display
 * MFRC-522 Mini RC522
@@ -40,17 +38,17 @@ Aus folgenden drei Komponenten besteht ein komplettes System
 * USB Powerbank
 * Gehäuse aus dem 3D-Druck
 
-###Firmware flashen
+### Firmware flashen
 ```
 pip install esptool
 esptool.py --chip esp32s3 --port /dev/ttyACM0 erase_flash
 esptool.py --chip esp32s3 --port /dev/ttyACM0 write_flash -z 0 esp32-S3_display_firmware.bin
 ```
 
-###LMS-Steuerung aufs Display laden
+### LMS-Steuerung aufs Display laden
 Zur Übertragung des Skripts auf das ESP32 Display benutze ich Thonny. Wähle Run --> Select Interpreter --> Micropython (ESP32) und suche dann den richtigen Port. Speicher damit *squeezeplayerSteuerung.py* als *main.py* auf dem Display.
 
-###LMS-Steuerung anpassen
+### LMS-Steuerung anpassen
 Rufe das Skript *paramter.py* in Thonny auf und passe folgende Angaben an:
 
 * wlanname
@@ -63,7 +61,7 @@ Speicher dann *parameter.py* auf dem Display
 
 ![WhereToSave](bilder/thonny_3_WhereToSave.png "WhereToSave")
 
-###Komponenten Verbinden
+### Komponenten Verbinden
 **RFID**
 
 | ESP32-S3 Display    | MFRC-522 Mini RC522|
