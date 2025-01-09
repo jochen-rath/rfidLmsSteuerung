@@ -5,6 +5,9 @@
 * [Vorbemerkung](#vorbemerkung)
 * [Aufbau](#aufbau)
 * [RFID Steuerung auf ESP32-Display](#RFID Steuerung auf ESP32-Display)
+* [RFID Karten Zuordnen](#RFID Karten Zuordnen)
+* [Installation restlicher Komponenten](#Installation restlicher Komponenten)
+* [ESP32-S3 Firmware selber erstellen](#ESP32-S3 Firmware selber erstellen)
 
 <a name="vorbemerkung"/>
 ## Vorbemerkung
@@ -82,6 +85,7 @@ Speicher dann *parameter.py* auf dem Display
 
 Ich habe den Taster direkt an das ESP32 gelötet, um Platz zu sparen. Nicht gesteckt.
 
+<a name="RFID Karten Zuordnen"/>
 ##RFID Karten Zuordnen
 Die RFID Karten werden mit Hilfe eines Python Skripts verschiednenen Musikordnern, -dateien, -streams, Hörbüchern oder An- Ausschaltern zugeordnet.
 
@@ -96,6 +100,7 @@ sudo systemctl start rfidLMS
 ```
 Möchtest du andere Pfade verwenden, passe die Ordner in den Skripten an. Ich habe die Datei *rfidKarten.csv* in einem Pfad gespeichert, auf dem ich per Samba mit meinem Handy zugriff habe, so kann ich einfach neue Karten in diese Datei einpflegen, indem ich mit dem NCF Reader meines Handy die Karten-ID auslese und diese einer Aktion zuordne.
 
+<a name="Installation restlicher Komponenten"/>
 ##Installation restlicher Komponenten
 
 ### LMS Server
@@ -170,6 +175,8 @@ esptool.py --port /dev/ttyUSB0 erase_flash
 esptool.py --port /dev/ttyUSB0 write_flash -fs 1MB -fm dout 0x0 tasmota-DE.bin
 ```
 [Hier ist eine ausführliche Anleitung mit Bildern.](https://medium.com/@jordanrounds/sonoff-basic-r2-tasmota-aa6f9d4e033f)
+
+<a name="ESP32-S3 Firmware selber erstellen"/>
 ##ESP32-S3 Firmware selber erstellen
 
 Sollte dein ESP32 nicht zu den hier vorgestellten Konfigurationen passen, erstelle deine eigene mit folgenden Befehlen:
