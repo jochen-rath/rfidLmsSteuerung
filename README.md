@@ -87,7 +87,7 @@ Speicher dann *parameter.py* auf dem Display
 Ich habe den Taster direkt an das ESP32 gelötet, um Platz zu sparen. Nicht gesteckt.
 
 <a name="rfidkartenzuordnen"/>
-##RFID Karten Zuordnen
+## RFID Karten Zuordnen
 Die RFID Karten werden mit Hilfe eines Python Skripts verschiednenen Musikordnern, -dateien, -streams, Hörbüchern oder An- Ausschaltern zugeordnet.
 
 1. Kopiere das Skript *httpServerGetPost.py* und die Datei *rfidKarten.csv* auf einen Server in den Ordner */home/pi/rfidLMS*
@@ -102,20 +102,20 @@ sudo systemctl start rfidLMS
 Möchtest du andere Pfade verwenden, passe die Ordner in den Skripten an. Ich habe die Datei *rfidKarten.csv* in einem Pfad gespeichert, auf dem ich per Samba mit meinem Handy zugriff habe, so kann ich einfach neue Karten in diese Datei einpflegen, indem ich mit dem NCF Reader meines Handy die Karten-ID auslese und diese einer Aktion zuordne.
 
 <a name="installationkomponenten"/>
-##Installation restlicher Komponenten
+## Installation restlicher Komponenten
 
 ### LMS Server
 Zur Docker-Installation kopiere dir die Docker-Compose Datei auf deinen Server und starte diesen mit 
 ```
 docker-compose up -d
 ```
-###squeezelite-esp32
-####Offiziele Clienten
+### squeezelite-esp32
+#### Offiziele Clienten
 Es gibt verschiedene Projekte, die direkt das Squeezelite-ESP32 unterstützen. Diese finden sich hier:
 
 [Firmware for ESP Audio Dock](https://sonocotta.github.io/esp32-audio-dock/)
 
-####ESP32-S3
+#### ESP32-S3
 Aus Kostengründen nutze ich aber den ESP32-S3, welcher keine offiziele Unterstützung besitzt. Für den ESP32-S3 Clienten braucht man folgende Teile:
 
 1. ESP32-S3 Development Board (z.B. von Aliexpress, auf 16MB achten: N16R8 - 8M psram, 16M flash)
@@ -157,7 +157,7 @@ Verbinde dich mit dem ESP32-S3 mit dem Handy, WLAN squeezelite-esp32, Passwort s
 **Autoconnect**
 Die hier genuzte Version des esp32-squeezelite Players kann sich nicht selber mit dem Server verbinden. [Hier wird beschrieben, welcher Schritt nochfehlt](https://github.com/sle118/squeezelite-esp32/issues/411#issuecomment-2104861151)
 
-###Sonoff Basic einrichten
+### Sonoff Basic einrichten
 Zum An und Auschalten der ESP32-S3 Clienten nutze ich den Sonoff Basic, welcher [mit einer Tasmota Firmaware geflasht wurde.](https://tasmota.github.io/docs/devices/Sonoff-Basic/)
 
 **Sonoff Flashen**
@@ -178,7 +178,7 @@ esptool.py --port /dev/ttyUSB0 write_flash -fs 1MB -fm dout 0x0 tasmota-DE.bin
 [Hier ist eine ausführliche Anleitung mit Bildern.](https://medium.com/@jordanrounds/sonoff-basic-r2-tasmota-aa6f9d4e033f)
 
 <a name="esp32s3firmwareerstellen"/>
-##ESP32-S3 Firmware selber erstellen
+## ESP32-S3 Firmware selber erstellen
 
 Sollte dein ESP32 nicht zu den hier vorgestellten Konfigurationen passen, erstelle deine eigene mit folgenden Befehlen:
 
