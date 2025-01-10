@@ -232,7 +232,10 @@ Passe mit dem Befehl "idf.py menuconfig" folgende Einstellungen an. Da der ESP32
 <img src="bilder/squeezeplayer_4-1_componente-config_Esp32S3-Specific.png" alt="config_Esp32S3-Specific" width="250"/>
 <img src="bilder/squeezeplayer_4-2_componente-config_Esp32S3-Specific.png" alt="config_Esp32S3-Specific" width="250"/>
 <img src="bilder/squeezeplayer_5_componente-config_FreeRTOS.png" alt="config_FreeRTOS" width="250"/>
+
+
 Führe dann folgende Befehle aus:
+
 ```
 idf.py build
 idf.py flash
