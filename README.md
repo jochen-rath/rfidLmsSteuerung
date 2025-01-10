@@ -4,6 +4,7 @@
 
 * [Vorbemerkung](#vorbemerkung)
 * [Aufbau](#aufbau)
+* [Beispiel](#beispiel)
 * [RFID Steuerung auf ESP32-Display](#rfidsteuerung)
 * [RFID Karten Zuordnen](#rfidkartenzuordnen)
 * [Installation restlicher Komponenten](#installationkomponenten)
@@ -29,7 +30,7 @@ Aus folgenden drei Komponenten besteht ein komplettes System
 3. Die hier vorgestellte RFID-Steuerung.
 4. Ein Pythonskript, welches den IDs der RFID-Karten einer Aktion zuordnen.
 
-<a name="rfidsteuerung"/>
+<a name="beispiel"/>
 
 ## Beispiel
 
@@ -224,14 +225,13 @@ cp build-scripts/I2S-4MFlash-sdkconfig.defaults sdkconfig.defaults
 
 Passe mit dem Befehl "idf.py menuconfig" folgende Einstellungen an. Da der ESP32-S3 kein Bluetooth hat, muss dies deaktiviert werden.
 
-![Bild 1](bilder/squeezeplayer_1_serialFlashConfig.png "Serial Flasher config")
-![Bild 2](bilder/squeezeplayer_2_squeezelite-esp32_AudioInput.png "Serial Flasher config")
-![Bild 3](bilder/squeezeplayer_3_componente-config_Bluetooth.png "")
-![Bild 4](bilder/squeezeplayer_4-0_componente-config_Esp32S3-Specific.png "")
-![Bild 5](bilder/squeezeplayer_4-1_componente-config_Esp32S3-Specific.png "")
-![Bild 6](bilder/squeezeplayer_4-2_componente-config_Esp32S3-Specific.png "")
-![Bild 7](bilder/squeezeplayer_5_componente-config_FreeRTOS.png "")
-
+<img src="bilder/squeezeplayer_1_serialFlashConfig.png" alt="serialFlashConfig" width="250"/>
+<img src="bilder/squeezeplayer_2_squeezelite-esp32_AudioInput.png" alt="esp32_AudioInput" width="250"/>
+<img src="bilder/squeezeplayer_3_componente-config_Bluetooth.png" alt="config_Bluetooth" width="250"/>
+<img src="bilder/squeezeplayer_4-0_componente-config_Esp32S3-Specific.png" alt="config_Esp32S3-Specific" width="250"/>
+<img src="bilder/squeezeplayer_4-1_componente-config_Esp32S3-Specific.png" alt="config_Esp32S3-Specific" width="250"/>
+<img src="bilder/squeezeplayer_4-2_componente-config_Esp32S3-Specific.png" alt="config_Esp32S3-Specific" width="250"/>
+<img src="bilder/squeezeplayer_5_componente-config_FreeRTOS.png" alt="config_FreeRTOS" width="250"/>
 Führe dann folgende Befehle aus:
 ```
 idf.py build
