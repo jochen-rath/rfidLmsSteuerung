@@ -71,7 +71,7 @@ Rufe das Skript *paramter.py* in Thonny auf und passe folgende Angaben an:
 
 Speicher dann *parameter.py* auf dem Display
 
-<img src="bilder/thonny_3_WhereToSave.png" alt="WhereToSave" width="250"/>
+<img src="bilder/thonny_3_WhereToSave.png" alt="WhereToSave" width="150"/>
 
 ### Komponenten Verbinden
 **RFID**
