@@ -1,4 +1,4 @@
-# Den Logitech Media Server mit RFID Karten steuern
+# Den Lyrion Media Server mit RFID Karten steuern
 
 ## Inhalt
 
@@ -28,6 +28,13 @@ Aus folgenden drei Komponenten besteht ein komplettes System
 2. Einen Clienten, der die Musik wiedergibt. ([Ich nutze squeezelite-esp32](https://github.com/sle118/squeezelite-esp32))
 3. Die hier vorgestellte RFID-Steuerung.
 4. Ein Pythonskript, welches den IDs der RFID-Karten einer Aktion zuordnen.
+
+<a name="rfidsteuerung"/>
+
+## Beispiel
+
+<img src="bilder/projekt1.png" alt="Beispiel 1" width="250"/>
+<img src="bilder/projekt2.png" alt="Beispiel 2" width="250"/>
 
 
 <a name="rfidsteuerung"/>
