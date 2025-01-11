@@ -98,7 +98,7 @@ Speicher dann *parameter.py* auf dem Display
 
 Ich habe den 5er Taster direkt an das ESP32 gelötet, um Platz zu sparen. Nicht gesteckt. Dazu habe ich den Stecker abgeschnitten und das die Enden der Kabel direkt an die Pins gelötet. Dadurch muss das Gehäuse nicht so hoch sein.
 
-<img src="bilder/verloeten1.png" alt="verloeten 1" width="150"/> <img src="bilder/verloeten2.png" alt="verloeten 2" width="150"/>
+<img src="bilder/verloeten2.png" alt="verloeten 2" width="150"/> <img src="bilder/verloeten1.png" alt="verloeten 1" width="150"/> 
 
 
 <a name="rfidkartenzuordnen"/>
