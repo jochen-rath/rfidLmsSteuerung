@@ -263,7 +263,7 @@ cp build-scripts/I2S-4MFlash-sdkconfig.defaults sdkconfig.defaults
 
 **ESP32-S3 Konfigurieren**
 
-Passe mit dem Befehl "idf.py menuconfig" folgende Einstellungen an. Da der ESP32-S3 kein Bluetooth hat, muss dies deaktiviert werden.
+Passe mit dem Befehl *idf.py menuconfig* folgende Einstellungen an. Da der ESP32-S3 kein Bluetooth hat, muss dies deaktiviert werden.
 
 <img src="bilder/squeezeplayer_1_serialFlashConfig.png" alt="serialFlashConfig" width="250"/>
 <img src="bilder/squeezeplayer_2_squeezelite-esp32_AudioInput.png" alt="esp32_AudioInput" width="250"/>
