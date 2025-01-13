@@ -60,6 +60,19 @@ esptool.py --chip esp32s3 --port /dev/ttyACM0 write_flash -z 0 esp32-S3_display_
 ### LMS-Steuerung aufs Display laden
 Zur Übertragung des Skripts auf das ESP32 Display benutze ich Thonny. Wähle Run --> Select Interpreter --> Micropython (ESP32) und suche dann den richtigen Port. Speicher damit *squeezeplayerSteuerung.py* als *main.py* auf dem Display.
 
+Wähle zuerst den Interpreter:
+
+<img src="bilder/thonny_1_Interpreter.png" alt="Interpreter" width="250"/>
+
+Nimm MicroPython (ESP32) und den passenden Port:
+
+<img src="bilder/thonny_2_micropython.png" alt="Micropython" width="250"/>
+
+Drücke auf Save Copy und wähle das Micropython Device:
+
+<img src="bilder/thonny_3_WhereToSave.png" alt="WhereToSave" width="150"/>
+
+
 ### LMS-Steuerung anpassen
 Rufe das Skript *paramter.py* in Thonny auf und passe folgende Angaben an:
 
@@ -69,9 +82,8 @@ Rufe das Skript *paramter.py* in Thonny auf und passe folgende Angaben an:
 * lmsserverip
 * rfidserverip
 
-Speicher dann *parameter.py* auf dem Display
 
-<img src="bilder/thonny_3_WhereToSave.png" alt="WhereToSave" width="150"/>
+Speicher dann *parameter.py* auf dem Display.
 
 ### Komponenten Verbinden
 **RFID**
@@ -99,6 +111,10 @@ Speicher dann *parameter.py* auf dem Display
 Ich habe den 5er Taster direkt an das ESP32 gelötet, um Platz zu sparen. Nicht gesteckt. Dazu habe ich den Stecker abgeschnitten und das die Enden der Kabel direkt an die Pins gelötet. Dadurch muss das Gehäuse nicht so hoch sein.
 
 <img src="bilder/verloeten2.png" alt="verloeten 2" width="150"/> <img src="bilder/verloeten1.png" alt="verloeten 1" width="150"/> 
+
+Da das Display die Schrauben verdeckt, klebe ich die Steuerung mit Heißkleber in das Gehäuse:
+
+<img src="bilder/esp32-display_gehaeuse_offen.png" alt="Gehaeuse offen" width="150"/> 
 
 
 <a name="rfidkartenzuordnen"/>
@@ -175,13 +191,34 @@ Verlöte folgende Punkte zwischen dem ESP und dem DAC
 |  41 | DIN |
 |  40 | BCLK
 
+Mache die Verbindung nicht zu kurz, sonst erzeugt der WLAN des esp32-S3 Störungen bei der Musikwiedergabe. 
+
+<img src="bilder/esp32-lms_client.png" alt="Verbindung" width="250"/>
+
 **ESP32-S3 Einrichten**
 
-Verbinde dich mit dem ESP32-S3 mit dem Handy, WLAN squeezelite-esp32, Passwort squeezelite
+Verbinde dich mit dem ESP32-S3 mit dem Handy, WLAN squeezelite-esp32, Passwort squeezelite. Richte dein Wlan ein und merk dir die IP-Adresse, mit der sich der Squeezelite mit deinem Heimnetz verbindet. Rufe nach dem Neustart diese IP-Adresse auf.
+
+Richte unter Audio den Playername und den LMS-Server ein:
+
+<img src="bilder/squeezeEinrichten1.png" alt="Player Name" width="250"/>
+
+Richte unter Hardware den DAC entsprechend obiger Tabelle ein, bzw. deiner eigenen Verlötung:
+
+<img src="bilder/squeezeEinrichten2.png" alt="DAC" width="250"/>
+
 
 **Autoconnect**
 
 Die hier genuzte Version des esp32-squeezelite Players kann sich nicht selber mit dem Server verbinden. [Hier wird beschrieben, welcher Schritt nochfehlt](https://github.com/sle118/squeezelite-esp32/issues/411#issuecomment-2104861151)
+
+Es muss noch autoexec 1 im NVS-Editor eingefügt werden:
+
+<img src="bilder/squeezeEinrichten3.png" alt="autoexec" width="250"/>
+
+Nach dem Neustart muss dies so aussehen:
+
+<img src="bilder/squeezeEinrichten4.png" alt="Player Name" width="250"/>
 
 ### Sonoff Basic einrichten
 

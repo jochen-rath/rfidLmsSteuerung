@@ -13,6 +13,7 @@ import machine
 import utime
 import random
 import time
+import uping
 import uasyncio as asyncio
 import vga2_bold_16x32 as big
 #import romans as big
@@ -286,6 +287,12 @@ class displayInhalt:
         self.obenLinks=''
         url=f'http{self.sonoff.split("http")[1]}/cm?cmnd=status'
         name=self.sonoff.split("http")[0]
+#Testen, ob der Sonoff ueberhaupt an ist.
+        try:
+            result=uping.ping(url)
+        except:
+            self.sonoff=''
+            return False
         try:
             res=urequests.post(url)
         except:
@@ -389,7 +396,7 @@ def main():
 #3. Schlafe 100 ms
             time.sleep_ms(100)
     finally:
-        printOnScreen('Fehler, starte neu')
+        printOnScreen('Finally: Fehler, starte neu')
         time.sleep_ms(500)
         tft_config.deinit(tft)
         machine.reset()
