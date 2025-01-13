@@ -201,7 +201,7 @@ Verbinde dich mit dem ESP32-S3 mit dem Handy, WLAN squeezelite-esp32, Passwort s
 
 Richte unter Audio den Playername und den LMS-Server ein:
 
-<img src="bilder/squeezeEinrichten1.png" alt="Player Name" width="250"/>
+<img src="bilder/squeezeEinrichten1.png" alt="PlayerName" width="250"/>
 
 Richte unter Hardware den DAC entsprechend obiger Tabelle ein, bzw. deiner eigenen Verlötung:
 
@@ -218,7 +218,7 @@ Es muss noch autoexec 1 im NVS-Editor eingefügt werden:
 
 Nach dem Neustart muss dies so aussehen:
 
-<img src="bilder/squeezeEinrichten4.png" alt="Player Name" width="250"/>
+<img src="bilder/squeezeEinrichten4.png" alt="Ergebnis" width="250"/>
 
 ### Sonoff Basic einrichten
 
@@ -251,8 +251,8 @@ Sollte dein ESP32-S3 nicht zu den hier vorgestellten Konfigurationen passen, ers
 mkdir ~/esp
 cd ~/esp
 git clone -b v4.4.4 --recursive https://github.com/espressif/esp-idf.git esp-idf-v4.4
-/home/jochen/esp/esp-idf-v4.4/install.sh
-. /home/jochen/esp/esp-idf-v4.4/export.sh
+~/esp/esp-idf-v4.4/install.sh
+. ~/esp/esp-idf-v4.4/export.sh
 git clone --recursive https://github.com/sle118/squeezelite-esp32.git
 cd squeezelite-esp32
 cp build-scripts/I2S-4MFlash-sdkconfig.defaults sdkconfig.defaults
