@@ -14,15 +14,15 @@
 
 ## Vorbemerkung
 
-Logitech hat vor lange Zeit einen kostenlosen Mediaserver bereit gestellt, mit dem man kostenlos seine Musik im ganzen Haus verteilen kann. Den Logitech Media Server oder kurz LMS. Man braucht einen Rechner, der als Server arbeit und die Musik an verschiedene Clienten schickt. Diese können Rechner, Raspberry Pis, Handys oder seit kurzen ESP32 sein. Gerade die ESP32 sind eine sehr günstige alternative, die Musik zu empfangen.
+Logitech hat vor lange Zeit einen kostenlosen Mediaserver bereit gestellt, mit dem man kostenlos seine Musik im ganzen Haus verteilen kann. Den Logitech (bzw. Lyrion) Media Server oder kurz LMS. Man braucht einen Rechner, der als Server arbeit und die Musik an verschiedene Clienten schickt. Diese können Rechner, Raspberry Pis, Handys oder seit kurzen ESP32 sein. Gerade die ESP32 sind eine sehr günstige alternative, die Musik zu empfangen.
 
-Den LMS kann man gut mit Handy und Browser fernsteuern. Doch habe ich nicht immer mein Handy dabei und möchte auch gerne, dass meine Kinder selbständig Lieder und Hörbücher starten können. Für letzteres gibt es auch gute eigenständige Systeme, wie z.B. der TonUINO, aber gerade für ältere Kinder ist dies irgendwann nicht mehr zeitgemäß. Da ich selber schon länger den Logitech Media Server (LMS) nutze und meinen Kinder den irgendwann auch in deren Zimmer einbauen wollte, entschied ich mich, mir eine RFID - Steuerung für diesen einzurichten.
+Den LMS kann man gut mit Handy und Browser fernsteuern. Doch habe ich nicht immer mein Handy dabei und möchte auch gerne, dass meine Kinder selbständig Lieder und Hörbücher starten können. Für letzteres gibt es auch gute eigenständige Systeme, wie z.B. der TonUINO, aber gerade für ältere Kinder ist dies irgendwann nicht mehr zeitgemäß. Da ich selber schon länger den Lyrion Media Server (LMS) nutze und meinen Kinder den irgendwann auch in deren Zimmer einbauen wollte, entschied ich mich, mir eine RFID - Steuerung für diesen einzurichten.
 
 <a name="aufbau"/>
 
 ## Aufbau
 
-Aus folgenden drei Komponenten besteht ein komplettes System
+Aus folgenden vier Komponenten besteht ein komplettes System
 
 
 1. Server mit einer laufenden LMS Instanz. ([Ich nutze Docker](https://hub.docker.com/r/lmscommunity/lyrionmusicserver))
@@ -132,7 +132,7 @@ sudo systemctl enable rfidLMS
 sudo systemctl daemon-reload
 sudo systemctl start rfidLMS
 ```
-Möchtest du andere Pfade verwenden, passe die Ordner in den Skripten an. Ich habe die Datei *rfidKarten.csv* in einem Pfad gespeichert, auf dem ich per Samba mit meinem Handy zugriff habe, so kann ich einfach neue Karten in diese Datei einpflegen, indem ich mit dem NCF Reader meines Handy die Karten-ID auslese und diese einer Aktion zuordne.
+Möchtest du andere Pfade verwenden, passe die Ordner in den Skripten an. Ich habe die Datei *rfidKarten.csv* in einem Pfad gespeichert, auf dem ich per Samba mit meinem Handy zugriff habe. So kann ich einfach neue Karten in diese Datei einpflegen, indem ich mit dem NCF Reader meines Handy die Karten-ID auslese und diese einer Aktion zuordne.
 
 <a name="installationkomponenten"/>
 
